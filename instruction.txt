@@ -1,0 +1,13 @@
+Create a game (could be text or graphics based) which has the following:
+  A character which you are able to move between rooms
+  This character has the following attributes:
+    Health
+    Speed
+    Attack
+    And a backpack which can store upto 3 items (there has to be a mechanism to check whether it is full before you pick another item up)
+  These rooms are linked to each other
+  These rooms can contain:
+  Enemies
+  Locked Doors which require a key
+  Items that can help the adventurer along their quest (improve their attributes/keys)
+  Have a clear end circumstance which results in win/lose
