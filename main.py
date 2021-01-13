@@ -1,5 +1,7 @@
 from random import randint #imports randint from random module
+
 from enemy import *
+from location import locationClass
 
 class playerClass: #defines player class
   def __init__(self):
@@ -63,22 +65,6 @@ class playerClass: #defines player class
   
   def changeRoom(self):
     print(self.current_room.connected_rooms)
-
-class locationClass: #defines class for rooms
-  def __init__(self, room_name, basic_enemy, normal_enemy, hard_enemy, boss, connected_rooms, *items):
-    self.room_name = room_name
-    self.basic_enemy = basic_enemy
-    self.normal_enemy = normal_enemy
-    self.hard_enemy = hard_enemy
-    self.boss = boss
-    self.connected_rooms = connected_rooms
-    self.items = list(items) #returns a list
-
-  def return_connected_rooms(self):
-    connected_rooms_names = []
-    for i in self.connected_rooms:
-      connected_rooms_names.append(i.room_name)
-    return connected_rooms_names
     
 l9 = locationClass("9", 0, 0, 0, 1, [])
 l8 = locationClass("8", 1, 2, 1, 0, [l9])
