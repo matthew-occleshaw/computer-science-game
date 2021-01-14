@@ -4,4 +4,3 @@ from player import playerClass
 
 p1 = playerClass(l1)
 print(p1.current_room.return_connected_rooms())
-print("test")
