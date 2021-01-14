@@ -35,29 +35,25 @@ class PlayerClass:
         # TODO
 
     def use_upgrade_station(self):
-        while True:
-            self.upgrade = input("Would you like to upgrade max health, speed, attack or backpack size? ")
-            if self.upgrade == "max health":
-                self.health_increase = randint(20, 50)
-                self.max_health += self.health_increase
-                print("Your max health was increased by", self.health_increase, "and is now", self.max_health)
-                break
-            elif self.upgrade == "speed":
-                self.speed_increase = randint(10, 25)
-                self.speed += self.speed_increase
-                print("Your speed was increased by", self.speed_increase, "and is now", self.speed)
-                break
-            elif self.upgrade == "attack":
-                self.attack_increase = randint(5, 10)
-                self.attack += self.attack_increase
-                print("Your attack was increased by", self.attack_increase, "and is now", self.attack)
-                break
-            elif self.upgrade == "backpack size":
-                self.backpack_size += 1
-                print("Your backpack size was increased by 1 and is now", self.backpack_size)
-                break
-            else:
-                print("That is not a valid thing to upgrade. Please try again.")
+        self.upgrade = input("Would you like to upgrade max health, speed, attack or backpack size: ")
+        if self.upgrade == "max health":
+            self.health_increase = randint(20, 50)
+            self.max_health += self.health_increase
+            print("Your max health was increased by", self.health_increase, "and is now", self.max_health)
+        elif self.upgrade == "speed":
+            self.speed_increase = randint(10, 25)
+            self.speed += self.speed_increase
+            print("Your speed was increased by", self.speed_increase, "and is now", self.speed)
+        elif self.upgrade == "attack":
+            self.attack_increase = randint(5, 10)
+            self.attack += self.attack_increase
+            print("Your attack was increased by", self.attack_increase, "and is now", self.attack)
+        elif self.upgrade == "backpack size":
+            self.backpack_size += 1
+            print("Your backpack size was increased by 1 and is now", self.backpack_size)
+        else:
+            print("That is not a valid thing to upgrade. Please try again.")
+            self.use_upgrade_station()
 
     def enter_room(self):
         pass  # TODO
