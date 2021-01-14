@@ -41,7 +41,3 @@ class BossEnemyClass(EnemyParentClass):
         self.speed = 100
         self.attack = 25
         self.current_room = current_room
-
-
-if __name__ == "__main__":
-    e1 = BasicEnemyClass()
