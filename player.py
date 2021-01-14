@@ -1,6 +1,7 @@
 from random import randint
 
 
+# noinspection PyMethodMayBeStatic
 class PlayerClass:
     def __init__(self, current_room):
         self.health = 100

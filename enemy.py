@@ -1,6 +1,7 @@
 from random import randint
 
 
+# noinspection PyUnresolvedReferences
 class EnemyParentClass:
     def attack_enemy(self, target):
         self.damage = self.attack + randint(0, self.attack)
