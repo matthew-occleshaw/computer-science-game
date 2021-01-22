@@ -6,3 +6,4 @@ from player import PlayerClass
 
 p1 = PlayerClass(l1)
 print(p1.current_room.return_connected_rooms())
+print("test")
