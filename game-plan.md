@@ -12,7 +12,7 @@
 	- Health
 	- Speed
 	- Attack
-- And a backpack which can store up to 3 items (there has to be a mechanism to check -  whether it is full before you pick another item up)
+- A backpack which can store up to 3 items (there has to be a mechanism to check -  whether it is full before you pick another item up)
 - These rooms are linked to each other
 - These rooms can contain:
 	- Enemies
@@ -71,3 +71,9 @@ graph BT
 3. Pick up items in room
 4. Use items
 5. Pick and then move on to next room
+
+## Expected Output
+
+```
+
+```
