@@ -20,12 +20,6 @@
 	- Items that can help the adventurer along their quest (improve their attributes/keys)
 	- Have a clear end circumstance which results in win/lose
 
-## To Do
-
-- [ ] Allow swapping of items when backpack full
-- [ ] Make top down module diagram of program flow
-- [ ] Write out what I want the actual output to look like
-
 ## Rooms
 
 ```mermaid
