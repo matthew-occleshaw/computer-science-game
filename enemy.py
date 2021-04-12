@@ -4,41 +4,38 @@ from random import randint
 # noinspection PyUnresolvedReferences
 class EnemyParentClass:
     def attack_enemy(self, target):
-        self.damage = self.attack + randint(0, self.attack)
-        target.health -= self.damage
+        damage = self.attack + randint(0, self.attack)
+        target.health -= damage
+        print(f"You took {damage} damage and are now on {target.health if target.health > 0 else 0} health")
 
 
 class BasicEnemyClass(EnemyParentClass):
-    def __init__(self, current_room):
+    def __init__(self):
         self.type = "Basic Enemy"
         self.health = 15
         self.speed = 35
         self.attack = 5
-        self.current_room = current_room
 
 
 class NormalEnemyClass(EnemyParentClass):
-    def __init__(self, current_room):
+    def __init__(self):
         self.type = "Normal Enemy"
         self.health = 25
         self.speed = 50
         self.attack = 10
-        self.current_room = current_room
 
 
 class HardEnemyClass(EnemyParentClass):
-    def __init__(self, current_room):
+    def __init__(self):
         self.type = "Hard Enemy"
         self.health = 35
         self.speed = 65
         self.attack = 15
-        self.current_room = current_room
 
 
 class BossEnemyClass(EnemyParentClass):
-    def __init__(self, current_room):
+    def __init__(self):
         self.type = "Boss Enemy"
         self.health = 75
         self.speed = 100
         self.attack = 25
-        self.current_room = current_room
