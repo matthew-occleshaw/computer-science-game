@@ -1,6 +1,6 @@
 # Game Plan
 
-[Repl.it Code](https://repl.it/@ConspiracyTheor/Computer-Science-Game "repl.it")  
+[![](https://repl.it/badge/github/matthew-occleshaw/computer-science-game)](https://repl.it/@ConspiracyTheor/Computer-Science-Game "repl.it")  
 
 [TOC]
 
@@ -45,7 +45,7 @@ graph BT
 |      5      |       1       |                |      1       |                        |
 |      6      |       1       |                |      1       |                        |
 |      7      |       1       |                |      1       |                        |
-|      8      |       1       |                |      1       |                        |
+|      8      |               |       2        |      1       |                        |
 |      9      |               |   Boss Fight   |              |                        |
 
 ## Item / Character Stats and Upgrades
@@ -65,15 +65,39 @@ graph BT
 
 ## Program Flow
 
+### More abstract
+
 1. Enter room
 2. Fight enemies
-	1. INSERT MORE HERE
 3. Pick up items in room
 4. Use items
 5. Pick and then move on to next room
 
+### More detailed
+
+1.  1. USERINPUT: pick room (not on first iteration)
+    2. Update Player object to be in chosen room
+2.  1. Announce one enemy (e.g. 'A Basic Enemy jumps out')
+    2. USERINPUT: what does player want to do
+    3. Execute their choice
+    4. Inform the users of the changes caused by their choice
+    5. Repeat steps 2.2 to 2.4 until player or enemy is dead
+    6. Repeat steps 2.1 to 2.5 for each enemy
+3.  1. 
+
 ## Expected Output
 
 ```
-
+You enter room 1
+A Basic Enemy jumps out
+What would you like to do
+ATTACK (1) or USE AN ITEM (2): 1
+You vanquished the enemies!
+You look around the room... [few second wait]
+You find:
+1   Apple
+2   Upgrade Station
+3   Key
+You pick up object(s) (type number(s); seperate with forward slashes): 1/2/3
+You use object 
 ```
