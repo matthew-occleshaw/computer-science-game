@@ -4,8 +4,8 @@ from random import randint
 # noinspection PyMethodMayBeStatic
 class PlayerClass:
     def __init__(self, current_room):
-        self.health = 100
         self.max_health = 100
+        self.health = self.max_health
         self.speed = 50
         self.attack = 10
         self.backpack_size = 3
@@ -24,40 +24,74 @@ class PlayerClass:
                 self.backpack[self.swap_item - 1] = item
         else:
             self.backpack.append(item)
+        # TODO Make sure swap item logic works
 
     def attack_enemy(self, target):
-        self.damage = self.attack + randint(0, self.attack)
-        target.health -= self.damage
-        if target.health <= 0:
-            print("You have vanquished the enemy")  # TODO
+        damage = self.attack + randint(0, self.attack)
+        target.health -= damage
+        print(f"{target.type} took {damage} damage and is now on {target.health if target.health > 0 else 0} health")
 
-    def encounter_enemy(self, target):
-        print("You have encountered a", target.type)
-        # TODO
+    def fight(self):
+        self.current_room.create_enemies()
+        for target in self.current_room.enemies.values():
+            print(f"\nA {target.type} jumps out")
+            while target.health > 0:
+                action = int(input("\nATTACK (1) or USE AN ITEM (2): "))
+                if action == 1:
+                    self.attack_enemy(target)
+                else:
+                    if self.use_item() == False:
+                        print("You attack instead")
+                        self.attack_enemy(target)
+                if target.health > 0:
+                    target.attack_enemy(self)
+                    if self.health < 0:
+                        self.death()
+                else:
+                    print("You killed it!")
+
+
+    def use_item(self):
+        if len(self.backpack) == 0:
+            print("You don't have any items")
+            return False
+        else:
+            print("Contents of backpack:")
+            for i in range(len(self.backpack)):
+                print(f"{i+1}: {self.backpack[i]}")
+                item = input("Item number: ")
+
+        # TODO Write use item code
 
     def use_upgrade_station(self):
-        self.upgrade = input("Would you like to upgrade max health, speed, attack or backpack size: ")
-        if self.upgrade == "max health":
-            self.health_increase = randint(20, 50)
-            self.max_health += self.health_increase
-            print("Your max health was increased by", self.health_increase, "and is now", self.max_health)
-        elif self.upgrade == "speed":
-            self.speed_increase = randint(10, 25)
-            self.speed += self.speed_increase
-            print("Your speed was increased by", self.speed_increase, "and is now", self.speed)
-        elif self.upgrade == "attack":
-            self.attack_increase = randint(5, 10)
-            self.attack += self.attack_increase
-            print("Your attack was increased by", self.attack_increase, "and is now", self.attack)
-        elif self.upgrade == "backpack size":
+        upgrade = int(input("Would you like to upgrade",
+        "MAX HEALTH (1), SPEED (2), ATTACK (3) or BACKPACK SIZE (4): "))
+        if upgrade == 1:
+            health_increase = randint(20, 50)
+            self.health += health_increase
+            self.max_health += health_increase
+            print(f"Your max health was increased by {health_increase} and is now {self.max_health}")
+        elif upgrade == 2:
+            speed_increase = randint(10, 25)
+            self.speed += speed_increase
+            print(f"Your speed was increased by {speed_increase} and is now {self.speed}")
+        elif upgrade == 3:
+            attack_increase = randint(5, 10)
+            self.attack += attack_increase
+            print(f"Your attack was increased by {attack_increase} and is now {self.attack}")
+        elif upgrade == 4:
             self.backpack_size += 1
-            print("Your backpack size was increased by 1 and is now", self.backpack_size)
+            print(f"Your backpack size was increased by 1 and is now {self.backpack_size}")
         else:
             print("That is not a valid thing to upgrade. Please try again.")
             self.use_upgrade_station()
 
     def enter_room(self):
-        pass  # TODO
+        pass  # TODO Write enter room code
 
     def change_room(self):
-        pass  # TODO
+        pass  # TODO Write change room code
+
+    def death(self):
+        print("You died")
+        quit()
