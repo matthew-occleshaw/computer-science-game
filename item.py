@@ -1,9 +1,8 @@
 class HealthItem:
-    pass
+    def __init__(self, name, health_increase):
+        self.name = name
+        self.health_increase = health_increase
 
-class Apple(HealthItem):
-    def __init__(self):
-        self.health_increase = 15
 
 class Key:
     def __init__(self, room_for):
@@ -13,3 +12,7 @@ class Key:
 class UpgradeStation:
     def __init__(self):
         self.used = False
+
+
+def apple():
+    return HealthItem("Apple", 15)

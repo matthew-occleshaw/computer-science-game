@@ -1,5 +1,5 @@
 from random import randint
-from item import HealthItem, Apple, Key, UpgradeStation
+from item import Key, UpgradeStation, HealthItem
 
 
 # noinspection PyMethodMayBeStatic
@@ -43,7 +43,7 @@ class PlayerClass:
                 if action == 1:
                     self.attack_enemy(target)
                 else:
-                    if self.use_item() == False:
+                    if not self.use_item():
                         print("You attack instead")
                         self.attack_enemy(target)
                 if target.health > 0:
@@ -63,7 +63,7 @@ class PlayerClass:
                 print(f"{i + 1}: {self.backpack[i]}")
             item_index = int(input("Item number: ")) - 1
             item = self.backpack[item_index]
-            if issubclass(item, HealthItem):
+            if isinstance(item, HealthItem):
                 self.health += item.health_increase
                 self.backpack.pop(item_index)
                 print("Item used! You were healed for "

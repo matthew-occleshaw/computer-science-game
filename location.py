@@ -1,6 +1,6 @@
 from enemy import (BasicEnemyClass, NormalEnemyClass,
-    HardEnemyClass, BossEnemyClass)
-from item import Apple, Key, UpgradeStation
+                   HardEnemyClass, BossEnemyClass)
+from item import Key, UpgradeStation, apple
 
 
 class LocationClass:  # defines class for rooms
@@ -15,7 +15,7 @@ class LocationClass:  # defines class for rooms
         self.boss = boss
 
         self.items = {}
-        if items != None:
+        if items is not None:
             for i in range(len(items)):
                 self.items[f"i{i}"] = items[i]
 
@@ -45,6 +45,6 @@ l6 = LocationClass("6", [l8], basic_enemy=1, hard_enemy=1)
 l5 = LocationClass("5", [l8], basic_enemy=1, hard_enemy=1)
 l4 = LocationClass("4", [l6, l7], basic_enemy=1, normal_enemy=1)
 l3 = LocationClass("3", [l5], basic_enemy=1, normal_enemy=1)
-l2 = LocationClass("2", [l3, l4], items=[Apple()],
-        upgrade_station=True, basic_enemy=3)
+l2 = LocationClass("2", [l3, l4], items=[apple()],
+                   upgrade_station=True, basic_enemy=3)
 l1 = LocationClass("1", [l2], items=[Key(l2)], basic_enemy=1)

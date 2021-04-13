@@ -4,8 +4,7 @@ from enemy import (BasicEnemyClass, NormalEnemyClass,
 from location import (LocationClass, l1, l2, l3, l4,
                       l5, l6, l7, l8, l9)
 from player import PlayerClass
-from item import Apple, Key, UpgradeStation
-
+from item import Key, UpgradeStation
 
 p0 = PlayerClass(l1)
 
