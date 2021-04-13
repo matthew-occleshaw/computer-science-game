@@ -5,8 +5,8 @@ from item import Apple, Key, UpgradeStation
 
 class LocationClass:  # defines class for rooms
     def __init__(self, room_name, connected_rooms,
-    items=None, basic_enemy=0, normal_enemy=0,
-    hard_enemy=0, boss=0, upgrade_station=None):
+                 items=None, basic_enemy=0, normal_enemy=0,
+                 hard_enemy=0, boss=0, upgrade_station=None):
         self.room_name = room_name
         self.connected_rooms = connected_rooms
         self.basic_enemy = basic_enemy
