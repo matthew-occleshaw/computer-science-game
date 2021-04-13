@@ -18,7 +18,7 @@
 	- Enemies
 	- Locked Doors which require a key
 	- Items that can help the adventurer along their quest (improve their attributes/keys)
-	- Have a clear end circumstance which results in win/lose
+	- Have a clear end circumstance which results in a win/lose
 
 ## Rooms
 
@@ -81,7 +81,7 @@ graph BT
     2. USERINPUT: what does player want to do
     3. Execute their choice
     4. Inform the users of the changes caused by their choice
-    5. Repeat steps 2.2 to 2.4 until player or enemy is dead
+    5. Repeat steps 2.2 to 2.4 until the player or enemy is dead
     6. Repeat steps 2.1 to 2.5 for each enemy
 3.  1. 
 
