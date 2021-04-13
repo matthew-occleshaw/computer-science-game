@@ -1,4 +1,7 @@
-class Apple:
+class HealthItem:
+    pass
+
+class Apple(HealthItem):
     def __init__(self):
         self.health_increase = 15
 
