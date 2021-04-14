@@ -1,6 +1,6 @@
 # Game Plan
 
-[![](https://repl.it/badge/github/matthew-occleshaw/computer-science-game)](https://repl.it/@ConspiracyTheor/Computer-Science-Game "repl.it")  
+[![](https://repl.it/badge/github/matthew-occleshaw/computer-science-game)](https://repl.it/@ConspiracyTheor/Computer-Science-Game "replit")  
 
 [TOC]
 
@@ -52,7 +52,7 @@ graph BT
 
 - Apple - restores 15 health
 - Key - unlocks doors
-- Upgrade station - allows for the upgrade of any of the key attributes
+- Upgrade station - allows for the upgrade of one of the key attributes
 
 ## Enemy Classes
 

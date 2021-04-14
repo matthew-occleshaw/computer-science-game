@@ -1,10 +1,5 @@
-# noinspection PyUnresolvedReferences
-from enemy import (BasicEnemyClass, NormalEnemyClass,
-                   HardEnemyClass, BossEnemyClass)
-from location import (LocationClass, l1, l2, l3, l4,
-                      l5, l6, l7, l8, l9)
+from location import l1
 from player import PlayerClass
-from item import Key, UpgradeStation
 
 p0 = PlayerClass(l1)
 

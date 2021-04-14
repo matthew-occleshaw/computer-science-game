@@ -1,8 +1,7 @@
 from random import randint
-from item import Key, UpgradeStation, HealthItem
+from item import HealthItem
 
 
-# noinspection PyMethodMayBeStatic
 class PlayerClass:
     def __init__(self, current_room):
         self.max_health = 100
@@ -15,15 +14,16 @@ class PlayerClass:
 
     def pick_up_item(self, item):
         if len(self.backpack) >= self.backpack_size:
-            self.swap_item = input("Your backpack is full. Would you like to swap "
-                                   "this item with an item you currently have?(y/n): ")
-            if self.swap_item == "y":
+            swap_item = input("Your backpack is full. Would you like to swap "
+                              "this item with an item you currently have?"
+                              "(y/n): ")
+            if swap_item == "y":
                 print("Items currently in bag:")
                 for i in range(self.backpack_size):
                     print(str(i + 1) + ": " + self.backpack[i])
-                self.swap_item = int(input("Enter the number of the item you would "
-                                           "like to swap: "))
-                self.backpack[self.swap_item - 1] = item
+                swap_item = int(input("Enter the number of the item you would "
+                                      "like to swap: "))
+                self.backpack[swap_item - 1] = item
         else:
             self.backpack.append(item)
         # TODO Make sure swap item logic works
@@ -106,6 +106,7 @@ class PlayerClass:
         pass
         # TODO Write change room code
 
+    # noinspection PyMethodMayBeStatic
     def death(self):
         print("You died")
         quit()
