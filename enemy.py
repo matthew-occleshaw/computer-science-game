@@ -6,8 +6,10 @@ class EnemyParentClass:
     def attack_enemy(self, target):
         damage = self.attack + randint(0, self.attack)
         target.health -= damage
-        print(f"You took {damage} damage and are now on "
-              f"{target.health if target.health > 0 else 0} health")
+        print(
+            f"You took {damage} damage and are now on "
+            f"{target.health if target.health > 0 else 0} health"
+        )
 
 
 class BasicEnemyClass(EnemyParentClass):

@@ -1,13 +1,20 @@
-from enemy import (BasicEnemyClass, NormalEnemyClass,
-                   HardEnemyClass, BossEnemyClass)
+from enemy import BasicEnemyClass, NormalEnemyClass, HardEnemyClass, BossEnemyClass
 from item import Key, UpgradeStation, apple
 
 
 class LocationClass:  # defines class for rooms
-    def __init__(self, room_name, connected_rooms,
-                 items=None, basic_enemy=0, normal_enemy=0,
-                 hard_enemy=0, boss=0, upgrade_station=None,
-                 key_required=False):
+    def __init__(
+        self,
+        room_name,
+        connected_rooms,
+        items=None,
+        basic_enemy=0,
+        normal_enemy=0,
+        hard_enemy=0,
+        boss=0,
+        upgrade_station=None,
+        key_required=False,
+    ):
         self.room_name = room_name
         self.connected_rooms = connected_rooms
         self.key_required = key_required
@@ -48,6 +55,5 @@ l6 = LocationClass("6", [l8], basic_enemy=1, hard_enemy=1)
 l5 = LocationClass("5", [l8], basic_enemy=1, hard_enemy=1)
 l4 = LocationClass("4", [l6, l7], basic_enemy=1, normal_enemy=1)
 l3 = LocationClass("3", [l5], basic_enemy=1, normal_enemy=1)
-l2 = LocationClass("2", [l3, l4], items=[apple()], upgrade_station=True,
-                   basic_enemy=3)
+l2 = LocationClass("2", [l3, l4], items=[apple()], upgrade_station=True, basic_enemy=3)
 l1 = LocationClass("1", [l2], items=[Key(l2)], basic_enemy=1)
