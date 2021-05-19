@@ -1,7 +1,5 @@
 # Game Plan
 
-[![](https://repl.it/badge/github/matthew-occleshaw/computer-science-game)](https://repl.it/@ConspiracyTheor/Computer-Science-Game "replit")  
-
 [TOC]
 
 ## Instructions
@@ -9,16 +7,16 @@
 - Create a game (could be text or graphics based) which has the following:
 - A character which you are able to move between rooms
 - This character has the following attributes:
-	- Health
-	- Speed
-	- Attack
-- A backpack which can store up to 3 items (there has to be a mechanism to check -  whether it is full before you pick another item up)
+  - Health
+  - Speed
+  - Attack
+- A backpack which can store up to 3 items (there has to be a mechanism to check - whether it is full before you pick another item up)
 - These rooms are linked to each other
 - These rooms can contain:
-	- Enemies
-	- Locked Doors which require a key
-	- Items that can help the adventurer along their quest (improve their attributes/keys)
-	- Have a clear end circumstance which results in a win/lose
+  - Enemies
+  - Locked Doors which require a key
+  - Items that can help the adventurer along their quest (improve their attributes/keys)
+  - Have a clear end circumstance which results in a win/lose
 
 ## Rooms
 
@@ -83,7 +81,7 @@ graph BT
     4. Inform the users of the changes caused by their choice
     5. Repeat steps 2.2 to 2.4 until the player or enemy is dead
     6. Repeat steps 2.1 to 2.5 for each enemy
-3.  1. 
+3.  1.
 
 ## Expected Output
 
@@ -99,5 +97,5 @@ You find:
 2   Upgrade Station
 3   Key
 You pick up object(s) (type number(s); seperate with forward slashes): 1/2/3
-You use object 
+You use object
 ```
