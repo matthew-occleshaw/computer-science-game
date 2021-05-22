@@ -76,6 +76,7 @@ class PlayerClass:
         # TODO Write enter room code
 
     def change_room(self):
+        # FIXME Below message prints twice?
         print(
             "There "
             + (
