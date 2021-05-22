@@ -96,6 +96,6 @@ You find:
 1   Apple
 2   Upgrade Station
 3   Key
-You pick up object(s) (type number(s); seperate with forward slashes): 1/2/3
+You pick up object(s) (type number(s); separate with forward slashes): 1/2/3
 You use object
 ```
