@@ -1,5 +1,4 @@
-from item import UpgradeStation, apple
-from location import l1
+from location import l1, l2
 from player import PlayerClass
 
 

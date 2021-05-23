@@ -38,7 +38,6 @@ class PlayerClass:
         )
 
     def fight(self):
-        self.current_room.create_enemies()
         for target in self.current_room.enemies.values():
             print(f"\nA {target.type} jumps out")
             while target.health > 0:
@@ -69,26 +68,31 @@ class PlayerClass:
             self.backpack.pop(item_index)
             item.use_item(self)
 
-    def enter_room(self):
-        print("You walk into the next room")
-        self.fight()
-
-        # TODO Write enter room code
-
     def change_room(self):
-        # FIXME Below message prints twice?
+        num_connected_rooms = len(self.current_room.connected_rooms)
+        one_connected_room = True if num_connected_rooms == 1 else False
         print(
             "There "
             + (
                 "is 1 door"
-                if len(self.current_room.connected_rooms) == 1
-                else f"are {len(self.current_room.connected_rooms)} doors"
+                if one_connected_room
+                else f"are {num_connected_rooms} doors"
             )
             + " in front of you"
         )
-
-        self.enter_room()
-        # TODO Write change room code
+        if not one_connected_room:
+            while True:
+                try:
+                    selected_door = int(input("Pick a door number to go through: "))
+                    selected_room = self.current_room.connected_rooms[selected_door - 1]
+                    break
+                except ValueError:
+                    print("Please enter a number")
+        else:
+            selected_room = self.current_room.connected_rooms[0]
+        self.current_room = selected_room
+        print("You walk through the door, into the next room")
+        self.fight()
 
     # noinspection PyMethodMayBeStatic
     def death(self):
