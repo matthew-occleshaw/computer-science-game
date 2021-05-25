@@ -4,7 +4,7 @@ from random import randint
 # noinspection PyUnresolvedReferences
 class EnemyParentClass:
     def attack_enemy(self, target):
-        damage = self.attack + randint(0, self.attack)
+        damage = self.attack + randint(0, self.attack / 2)
         target.health -= damage
         print(
             f"You took {damage} damage and are now on "

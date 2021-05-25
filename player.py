@@ -2,10 +2,13 @@ from random import randint
 from time import sleep
 
 from item import Key
+from location import l0
+from leaderboard import insert_record
 
 
 class PlayerClass:
-    def __init__(self, current_room):
+    def __init__(self, username, current_room=l0):
+        self.username = username
         self.max_health = 100
         self.health = self.max_health
         self.speed = 50
@@ -73,10 +76,10 @@ class PlayerClass:
             item.use_item(self)
 
     def change_room(self):
+        if self.current_room.connected_rooms == None:
+            self.win_game()
         num_connected_rooms = len(self.current_room.connected_rooms)
         one_connected_room = True if num_connected_rooms == 1 else False
-        if num_connected_rooms == 0:
-            self.win_game()
         print(
             "There"
             + (
@@ -117,6 +120,7 @@ class PlayerClass:
 
         self.current_room = selected_room
         print("You walk through the door, into the next room.")
+        # TODO Add search room for items option
 
     # noinspection PyMethodMayBeStatic
     def death(self):
@@ -127,4 +131,5 @@ class PlayerClass:
     def win_game(self):
         print("You won!")
         print(f"You finished on {self.health} health.")
+        insert_record(self.username, self.health)
         quit()
