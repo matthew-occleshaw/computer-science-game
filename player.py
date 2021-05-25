@@ -1,4 +1,7 @@
 from random import randint
+from time import sleep
+
+from item import Key
 
 
 class PlayerClass:
@@ -30,7 +33,7 @@ class PlayerClass:
             self.backpack.append(item)
 
     def attack_enemy(self, target):
-        damage = self.attack + randint(0, self.attack)
+        damage = self.attack + randint(0, self.attack / 2)
         target.health -= damage
         print(
             f"{target.type} took {damage} damage and is "
@@ -39,7 +42,8 @@ class PlayerClass:
 
     def fight(self):
         for target in self.current_room.enemies.values():
-            print(f"\nA {target.type} jumps out")
+            sleep(1)
+            print(f"A {target.type} jumps out")
             while target.health > 0:
                 action = int(input("\nATTACK (1) or USE AN ITEM (2): "))
                 if action == 1:
@@ -53,7 +57,7 @@ class PlayerClass:
                     if self.health < 0:
                         self.death()
                 else:
-                    print("You killed it!")
+                    print("You killed it!\n")
 
     def use_item(self):
         if len(self.backpack) == 0:
@@ -71,14 +75,16 @@ class PlayerClass:
     def change_room(self):
         num_connected_rooms = len(self.current_room.connected_rooms)
         one_connected_room = True if num_connected_rooms == 1 else False
+        if num_connected_rooms == 0:
+            self.win_game()
         print(
-            "There "
+            "There"
             + (
-                "is 1 door"
+                "'s a door"
                 if one_connected_room
-                else f"are {num_connected_rooms} doors"
+                else f" are {num_connected_rooms} doors"
             )
-            + " in front of you"
+            + " in front of you."
         )
         if not one_connected_room:
             while True:
@@ -87,14 +93,38 @@ class PlayerClass:
                     selected_room = self.current_room.connected_rooms[selected_door - 1]
                     break
                 except ValueError:
-                    print("Please enter a number")
+                    print(
+                        "Please enter a number (one of: "
+                        f"{[i + 1 for i in range(num_connected_rooms)]})"
+                    )
         else:
             selected_room = self.current_room.connected_rooms[0]
+        if selected_room.key_required:
+            print("The door is locked and needs a key.")
+            key_in_backpack = any(isinstance(i, Key) for i in self.backpack)
+            if key_in_backpack:
+                key = self.backpack[
+                    list(
+                        map(
+                            lambda item: True if isinstance(item, Key) else False,
+                            self.backpack,
+                        )
+                    ).index(True)
+                ]
+                print("You have a key in your backpack. You try it ... ")
+                sleep(1)
+                print("It fits!")
+
         self.current_room = selected_room
-        print("You walk through the door, into the next room")
-        self.fight()
+        print("You walk through the door, into the next room.")
 
     # noinspection PyMethodMayBeStatic
     def death(self):
-        print("You died")
+        print("GAME OVER")
+        print("You died.")
+        quit()
+
+    def win_game(self):
+        print("You won!")
+        print(f"You finished on {self.health} health.")
         quit()

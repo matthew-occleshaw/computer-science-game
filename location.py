@@ -2,11 +2,11 @@ from enemy import BasicEnemyClass, NormalEnemyClass, HardEnemyClass, BossEnemyCl
 from item import Key, UpgradeStation, apple
 
 
-class LocationClass:  # defines class for rooms
+class LocationClass:
     def __init__(
         self,
         room_name,
-        connected_rooms,
+        connected_rooms=None,
         items=None,
         basic_enemy=0,
         normal_enemy=0,
@@ -23,9 +23,12 @@ class LocationClass:  # defines class for rooms
                 self.items[f"i{i}"] = items[i]
 
         self.connected_rooms = connected_rooms
-        self.connected_room_names = []
-        for i in self.connected_rooms:
-            self.connected_room_names.append(i.room_name)
+        try:
+            self.connected_room_names = list(
+                map(lambda room: room.room_name, self.connected_rooms)
+            )
+        except TypeError:
+            self.connected_room_names = []
 
         self.enemies = {}
         for i in range(basic_enemy):
@@ -38,12 +41,13 @@ class LocationClass:  # defines class for rooms
             self.enemies[f"boss{i}"] = BossEnemyClass()
 
 
-l9 = LocationClass("9", [], boss=1)
+l9 = LocationClass("9", boss=1)
 l8 = LocationClass("8", [l9], normal_enemy=2, hard_enemy=1)
 l7 = LocationClass("7", [l8], basic_enemy=1, hard_enemy=1)
 l6 = LocationClass("6", [l8], basic_enemy=1, hard_enemy=1)
 l5 = LocationClass("5", [l8], basic_enemy=1, hard_enemy=1)
-l4 = LocationClass("4", [l6, l7], basic_enemy=1, normal_enemy=1)
+l4 = LocationClass("4", [l6, l7], key_required=True, basic_enemy=1, normal_enemy=1)
 l3 = LocationClass("3", [l5], basic_enemy=1, normal_enemy=1)
 l2 = LocationClass("2", [l3, l4], items=[apple(), UpgradeStation()], basic_enemy=3)
-l1 = LocationClass("1", [l2], items=[Key(l2)], basic_enemy=1)
+l1 = LocationClass("1", [l2], items=[Key()], basic_enemy=1)
+l0 = LocationClass("Start", [l1])

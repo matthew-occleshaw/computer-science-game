@@ -16,10 +16,8 @@ def apple():
 
 
 class Key:
-    def __init__(self, room_for):
-        self.room = room_for
-
-    # TODO Implement keys for rooms
+    def __init__(self):
+        self.name = "Key"
 
 
 class UpgradeStation:
@@ -67,4 +65,4 @@ class UpgradeStation:
             )
         else:
             print("That is not a valid thing to upgrade. Please try again.")
-            self.use_item()
+            self.use_item(player)
