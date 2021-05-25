@@ -17,10 +17,7 @@ class LocationClass:
         self.room_name = room_name
         self.key_required = key_required
 
-        self.items = {}
-        if items is not None:
-            for i in range(len(items)):
-                self.items[f"i{i}"] = items[i]
+        self.items = items
 
         self.connected_rooms = connected_rooms
         try:
