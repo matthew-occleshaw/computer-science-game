@@ -17,26 +17,24 @@ class PlayerClass:
         self.backpack = []
         self.current_room = current_room
 
-    def pick_up_item(self, item):
-        if len(self.backpack) >= self.backpack_size:
-            swap_item = input(
-                "Your backpack is full. Would you like to swap the "
-                f"{item.name} with an item you currently have? (y/n): "
-            )
-            if swap_item == "y":
-                print("Items currently in bag: ")
-                for index, backpack_item in enumerate(self.backpack):
-                    print(f"{str(index + 1)}: {backpack_item.name}")
-                swap_item = int(
-                    input("Enter the number of the item you would like to swap: ")
-                )
-                self.backpack[swap_item - 1] = item
-                print(f"{item.name} added to bag.")
-                self.current_room.items.remove(item)
+    def menu(self):
+        print(
+            "\nYou can: ", "1: Look for items", "2: Use an item", "3: Move on", sep="\n"
+        )
+        chosen_action = int(input("Number of action: "))
+        print("\n")
+        if chosen_action == 1:
+            self.look_for_items()
+            self.menu()
+        elif chosen_action == 2:
+            self.use_item()
+            self.menu()
+        elif chosen_action == 3:
+            self.change_room()
         else:
-            self.backpack.append(item)
-            print(f"{item.name} added to bag.")
-            self.current_room.items.remove(item)
+            print("Not a valid option - please try again.\n")
+            self.menu()
+        # FIXME Make sure menu() works
 
     def attack_enemy(self, target):
         damage = self.attack + randint(0, self.attack // 2)
@@ -63,7 +61,7 @@ class PlayerClass:
                     if self.health < 0:
                         self.death()
                 else:
-                    print("You killed it!\n")
+                    print("You killed it!")
 
     def use_item(self):
         if len(self.backpack) == 0:
@@ -73,18 +71,41 @@ class PlayerClass:
             print("Contents of backpack: ")
             for index, item in enumerate(self.backpack):
                 print(f"{str(index + 1)}: {item.name}")
-            item_index = int(input("Item number: ")) - 1
-            item = self.backpack[item_index]
-            self.backpack.pop(item_index)
+            item = self.backpack[int(input("Item number: ")) - 1]
             item.use_item(self)
+            self.backpack.remove(item)
+
+    def pick_up_item(self, item):
+        sleep(1)
+        if len(self.backpack) >= self.backpack_size:
+            swap_item = input(
+                "Your backpack is full. Would you like to swap the "
+                f"{item.name} with an item you currently have? (y/n): "
+            )
+            if swap_item == "y":
+                print("Items currently in bag: ")
+                sleep(1)
+                for index, backpack_item in enumerate(self.backpack):
+                    print(f"{str(index + 1)}: {backpack_item.name}")
+                swap_item = self.backpack[
+                    int(input("Enter the number of the item you would like to swap: "))
+                    - 1
+                ]
+                self.backpack.remove(swap_item)
+                self.current_room.items.append(swap_item)
+                print(f"\n{item.name} added to bag.")
+                self.current_room.items.remove(item)
+        else:
+            self.backpack.append(item)
+            print(f"{item.name} added to bag.")
+            self.current_room.items.remove(item)
 
     def look_for_items(self):
-        sleep(1)
         print("You look around for items ... ", end="")
-        sleep(1)
-        if self.current_room.items is not None:
+        sleep(1.5)
+        if len(self.current_room.items) != 0:
             print("You find: ")
-            for index, item in enumerate(self.backpack):
+            for index, item in enumerate(self.current_room.items):
                 print(f"{str(index + 1)}: {item.name}")
             selected_items = [
                 self.current_room.items[i - 1]
@@ -92,7 +113,8 @@ class PlayerClass:
                     int(i)
                     for i in input(
                         "Enter the number(s) of the items you would like "
-                        "to pick up (separated by spaces): "
+                        "to pick up (separated by spaces) or nothing to "
+                        "not pick anything up: "
                     ).split()
                 ]
             ]

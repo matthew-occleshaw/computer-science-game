@@ -18,6 +18,9 @@ def apple():
 class Key:
     def __init__(self):
         self.name = "Key"
+    
+    def use_item(self, player):
+        print("You can't use this item here")
 
 
 class UpgradeStation:
@@ -26,7 +29,7 @@ class UpgradeStation:
 
     def use_item(self, player):
         print(
-            "Would you like to upgrade: ",
+            "\nWould you like to upgrade: ",
             "1: Max Health",
             "2: Speed",
             "3: Attack",

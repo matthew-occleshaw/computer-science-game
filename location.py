@@ -7,7 +7,7 @@ class LocationClass:
         self,
         room_name,
         connected_rooms=None,
-        items=None,
+        items=[],
         basic_enemy=0,
         normal_enemy=0,
         hard_enemy=0,
