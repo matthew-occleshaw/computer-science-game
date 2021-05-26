@@ -272,4 +272,7 @@ Thumbs.db
 poetry.lock
 pyproject.toml
 
+### Project Specific ###
+game_saves.json
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,pycharm

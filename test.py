@@ -1,10 +1,8 @@
-from item import Key, apple
-from location import l2, l1
+from enemy import BasicEnemyClass
 from player import PlayerClass
-from leaderboard import insert_record
+from save_game import *
 
-
-p = PlayerClass(l1)
-insert_record("username", "final_health")
-# p.backpack.extend([apple(), Key()])
-# p.change_room()
+p = PlayerClass("username")
+e = BasicEnemyClass()
+e.attack_enemy(p)
+store_game_state(p)

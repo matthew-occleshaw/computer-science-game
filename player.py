@@ -7,14 +7,24 @@ from leaderboard import insert_record
 
 
 class PlayerClass:
-    def __init__(self, username, current_room=l0):
+    def __init__(
+        self,
+        username,
+        max_health=100,
+        health=100,
+        speed=50,
+        attack=10,
+        backpack_size=3,
+        backpack=[],
+        current_room=l0,
+    ):
         self.username = username
-        self.max_health = 100
-        self.health = self.max_health
-        self.speed = 50
-        self.attack = 10
-        self.backpack_size = 3
-        self.backpack = []
+        self.max_health = max_health
+        self.health = health
+        self.speed = speed
+        self.attack = attack
+        self.backpack_size = backpack_size
+        self.backpack = backpack
         self.current_room = current_room
 
     def menu(self):
