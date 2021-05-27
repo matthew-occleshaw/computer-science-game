@@ -1,6 +1,10 @@
 from random import randint
 
 
+# NOTE: All directly used items must have no parameters for creation, a name attribute
+#   and a use_item method. They must also be added to the items list.
+
+
 class HealthItem:
     def __init__(self, name, health_increase):
         self.name = name
@@ -19,7 +23,8 @@ class Key:
     def __init__(self):
         self.name = "Key"
 
-    def use_item(self, player):
+    @staticmethod
+    def use_item(player):
         print("You can't use this item here")
 
 
