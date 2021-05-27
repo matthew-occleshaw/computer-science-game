@@ -29,4 +29,22 @@ def store_game_state(player):
 
 def retrieve_game_state():
     pass
-    # TODO Implement game state retrieval
+    # TODO Implement way for saves to be deleted after they have been retrieved
+    # (stop things clogging up)
+
+
+def reset_saves():
+    if input("Are you sure (y/n): ") == "y":
+        with open("game_saves.json", "wt") as file:
+            file_data = []
+            file.write(dumps(file_data))
+        print("Game saves reset")
+
+
+def main():
+    if len(argv) > 1 and argv[1] == "--reset":
+        reset_saves()
+
+
+if __name__ == "__main__":
+    main()
