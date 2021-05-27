@@ -74,3 +74,7 @@ class UpgradeStation:
         else:
             print("That is not a valid thing to upgrade. Please try again.")
             self.use_item(player)
+
+
+items = [Key, UpgradeStation, apple]
+items_dict = {item().name: item for item in items}

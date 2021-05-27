@@ -4,19 +4,20 @@ from time import sleep
 from item import Key
 from location import l0
 from leaderboard import insert_record
+from save_game import store_game_state
 
 
 class PlayerClass:
     def __init__(
         self,
         username,
+        current_room=l0,
         max_health=100,
         health=100,
         speed=50,
         attack=10,
         backpack_size=3,
-        backpack=[],
-        current_room=l0,
+        backpack=None,
     ):
         self.username = username
         self.max_health = max_health
@@ -24,12 +25,17 @@ class PlayerClass:
         self.speed = speed
         self.attack = attack
         self.backpack_size = backpack_size
-        self.backpack = backpack
+        self.backpack = backpack if backpack is not None else []
         self.current_room = current_room
 
     def menu(self):
         print(
-            "\nYou can: ", "1: Look for items", "2: Use an item", "3: Move on", sep="\n"
+            "\nYou can: ",
+            "1: Look for items",
+            "2: Use an item",
+            "3: Move on",
+            "4: Save game and exit",
+            sep="\n",
         )
         chosen_action = int(input("Number of action: "))
         print("\n")
@@ -41,10 +47,12 @@ class PlayerClass:
             self.menu()
         elif chosen_action == 3:
             self.change_room()
+        elif chosen_action == 4:
+            self.save_game()
         else:
             print("Not a valid option - please try again.\n")
             self.menu()
-        # FIXME Make sure menu() works
+        # TODO Make sure menu() works
 
     def attack_enemy(self, target):
         damage = self.attack + randint(0, self.attack // 2)
@@ -191,3 +199,11 @@ class PlayerClass:
         print(f"You finished on {self.health} health.")
         insert_record(self.username, self.health)
         quit()
+
+    def save_game(self):
+        if input("Are you sure you want to save and quit? (y/n): ") == "y":
+            store_game_state(self)
+            print("Game stored.")
+            quit()
+        else:
+            self.menu()

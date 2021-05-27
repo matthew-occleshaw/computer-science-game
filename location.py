@@ -7,7 +7,7 @@ class LocationClass:
         self,
         room_name,
         connected_rooms=None,
-        items=[],
+        items=None,
         basic_enemy=0,
         normal_enemy=0,
         hard_enemy=0,
@@ -17,7 +17,7 @@ class LocationClass:
         self.room_name = room_name
         self.key_required = key_required
 
-        self.items = items
+        self.items = items if items is not None else []
 
         self.connected_rooms = connected_rooms
         try:
@@ -48,3 +48,6 @@ l3 = LocationClass("3", [l5], basic_enemy=1, normal_enemy=1)
 l2 = LocationClass("2", [l3, l4], items=[apple(), UpgradeStation()], basic_enemy=3)
 l1 = LocationClass("1", [l2], items=[Key()], basic_enemy=1)
 l0 = LocationClass("Start", [l1])
+
+locations = [l0, l1, l2, l3, l4, l5, l6, l7, l8, l9]
+locations_dict = {location.room_name: location for location in locations}
