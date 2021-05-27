@@ -23,6 +23,7 @@ class Key:
     def __init__(self):
         self.name = "Key"
 
+    # noinspection PyUnusedLocal
     @staticmethod
     def use_item(player):
         print("You can't use this item here")
