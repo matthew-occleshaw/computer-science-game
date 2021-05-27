@@ -8,8 +8,9 @@ def connect_to_db(func):
     def inner(*args, **kwargs):
         connection = sql.connect("leaderboard.db")
         cursor = connection.cursor()
-        func(cursor, *args, **kwargs)
+        return_value = func(cursor, *args, **kwargs)
         connection.commit()
+        return return_value
 
     return inner
 
@@ -34,8 +35,8 @@ def reset_db(c):
 def get_data(c):
     c.execute("""SELECT username, final_health FROM leaderboard""")
     results = c.fetchall()
-    table = tabulate(results, headers=["Username", "Final Health"], tablefmt="github")
-    print(table)
+    table = tabulate(results, headers=["Username", "Final Health"], tablefmt="simple")
+    return table
 
 
 @connect_to_db
@@ -50,7 +51,7 @@ def main():
         if argv[1] == "--reset":
             reset_db()
         elif argv[1] == "--get-data":
-            get_data()
+            print(get_data())
 
 
 if __name__ == "__main__":

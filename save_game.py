@@ -57,7 +57,7 @@ def reset_saves():
         with open("game_saves.json", "wt") as file:
             file_data = []
             file.write(dumps(file_data))
-        print("Game saves reset")
+        print("Game saves reset.")
 
 
 def main():
