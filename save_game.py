@@ -36,20 +36,20 @@ def retrieve_game_state():
         print("Saved games: ")
         for num, save in enumerate(saves):
             print(f"{num + 1}: {save}")
-        selected_save = file_data[int(input("Enter save number: ")) - 1]
+        selected_save_index = int(input("Enter save number: ")) - 1
+        selected_save = file_data[selected_save_index]
         selected_save.pop("save_name")
         selected_save["backpack"] = [
             items_dict[item]() for item in selected_save["backpack"]
         ]
         selected_save["current_room"] = locations_dict[selected_save["current_room"]]
+        file_data.pop(selected_save_index)
+        with open("game_saves.json", "wt") as write_file:
+            write_file.write(dumps(file_data))
         return selected_save
     else:
         print("No saves available. Starting a new game.")
         return None
-
-    pass
-    # TODO Implement way for saves to be deleted after they have been retrieved
-    # (stop things clogging up)
 
 
 def reset_saves():
