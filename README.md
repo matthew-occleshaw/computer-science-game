@@ -10,9 +10,11 @@ Simple text-based dungeon crawler created for a computer science project
 
 ### To run
 
-1. `pip install --user pipenv`
-2. `pipenv install`
-3. `python main.py`
+```bash
+$ pip install --user pipenv
+$ pipenv install
+$ pipenv run python main.py
+```
 
 ### leaderboard.py
 
