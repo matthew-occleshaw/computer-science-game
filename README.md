@@ -6,13 +6,15 @@ Simple text-based dungeon crawler created for a computer science project
 
 [Plan](https://github.com/matthew-occleshaw/computer-science-game/blob/master/game-plan.md)  
 [GitHub Repository](https://github.com/matthew-occleshaw/computer-science-game "Github")  
-[To Do List (GitHub Project)](https://github.com/matthew-occleshaw/computer-science-game/projects/1)
+[To Do List](https://github.com/matthew-occleshaw/computer-science-game/blob/master/game-plan.md)
 
 ### To run
 
-1. `pip install --user pipenv`
-2. `pipenv install`
-3. `python main.py`
+```bash
+$ pip install --user pipenv
+$ pipenv install
+$ pipenv run python main.py
+```
 
 ### leaderboard.py
 
