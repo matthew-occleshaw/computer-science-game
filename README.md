@@ -6,7 +6,7 @@ Simple text-based dungeon crawler created for a computer science project
 
 [Plan](https://github.com/matthew-occleshaw/computer-science-game/blob/master/game-plan.md)  
 [GitHub Repository](https://github.com/matthew-occleshaw/computer-science-game "Github")  
-[To Do List](https://github.com/matthew-occleshaw/computer-science-game/game-plan.md)
+[To Do List](https://github.com/matthew-occleshaw/computer-science-game/blob/master/game-plan.md)
 
 ### To run
 
