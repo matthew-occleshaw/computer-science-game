@@ -5,7 +5,14 @@ from random import randint
 #   and a use_item method. They must also be added to the items list.
 
 
-class HealthItem:
+class ItemClass:
+    def __init__(self):
+        self.name: str
+
+    # TODO Do something here?
+
+
+class HealthItem(ItemClass):
     def __init__(self, name, health_increase):
         self.name = name
         self.health_increase = health_increase
@@ -19,7 +26,7 @@ def apple():
     return HealthItem("Apple", 15)
 
 
-class Key:
+class Key(ItemClass):
     def __init__(self):
         self.name = "Key"
 
@@ -29,7 +36,7 @@ class Key:
         print("You can't use this item here")
 
 
-class UpgradeStation:
+class UpgradeStation(ItemClass):
     def __init__(self):
         self.name = "Upgrade Station"
 

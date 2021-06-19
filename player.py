@@ -1,8 +1,10 @@
 from random import randint
 from time import sleep
+from typing import Optional
 
-from item import Key
-from location import l0
+from enemy import EnemyParentClass
+from item import Key, ItemClass
+from location import l0, LocationClass
 from leaderboard import insert_record
 from save_game import store_game_state
 
@@ -10,23 +12,23 @@ from save_game import store_game_state
 class PlayerClass:
     def __init__(
         self,
-        username,
-        current_room=l0,
-        max_health=100,
-        health=100,
-        speed=50,
-        attack=10,
-        backpack_size=3,
-        backpack=None,
+        username: str,
+        current_room: LocationClass = l0,
+        max_health: int = 100,
+        health: int = 100,
+        speed: int = 50,
+        attack: int = 10,
+        backpack_size: int = 3,
+        backpack: Optional[list[ItemClass]] = None,
     ):
-        self.username = username
-        self.max_health = max_health
-        self.health = health
-        self.speed = speed
-        self.attack = attack
-        self.backpack_size = backpack_size
-        self.backpack = backpack if backpack is not None else []
-        self.current_room = current_room
+        self.username: str = username
+        self.current_room: LocationClass = current_room
+        self.max_health: int = max_health
+        self.health: int = health
+        self.speed: int = speed
+        self.attack: int = attack
+        self.backpack_size: int = backpack_size
+        self.backpack: list[ItemClass] = backpack if backpack is not None else []
 
     def menu(self):
         print(
@@ -54,8 +56,8 @@ class PlayerClass:
             self.menu()
         # TODO Make sure menu() works
 
-    def attack_enemy(self, target):
-        damage = self.attack + randint(0, self.attack // 2)
+    def attack_enemy(self, target: EnemyParentClass):
+        damage: int = self.attack + randint(0, self.attack // 2)
         target.health -= damage
         print(
             f"{target.type} took {damage} damage and is "
@@ -93,7 +95,7 @@ class PlayerClass:
             item.use_item(self)
             self.backpack.remove(item)
 
-    def pick_up_item(self, item):
+    def pick_up_item(self, item: ItemClass):
         sleep(1)
         if len(self.backpack) >= self.backpack_size:
             swap_item = input(

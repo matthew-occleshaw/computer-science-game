@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 tabulate = "*"
+mypy = "*"
 
 [dev-packages]
 black = "*"

@@ -3,6 +3,12 @@ from random import randint
 
 # noinspection PyUnresolvedReferences
 class EnemyParentClass:
+    def __init__(self):
+        self.type: str
+        self.health: int
+        self.speed: int
+        self.attack: int
+
     def attack_enemy(self, target):
         damage = self.attack + randint(0, self.attack // 2)
         target.health -= damage
@@ -14,6 +20,7 @@ class EnemyParentClass:
 
 class BasicEnemyClass(EnemyParentClass):
     def __init__(self):
+        super().__init__()
         self.type = "Basic Enemy"
         self.health = 15
         self.speed = 35
@@ -22,6 +29,7 @@ class BasicEnemyClass(EnemyParentClass):
 
 class NormalEnemyClass(EnemyParentClass):
     def __init__(self):
+        super().__init__()
         self.type = "Normal Enemy"
         self.health = 25
         self.speed = 50
@@ -30,6 +38,7 @@ class NormalEnemyClass(EnemyParentClass):
 
 class HardEnemyClass(EnemyParentClass):
     def __init__(self):
+        super().__init__()
         self.type = "Hard Enemy"
         self.health = 35
         self.speed = 65
@@ -38,6 +47,7 @@ class HardEnemyClass(EnemyParentClass):
 
 class BossEnemyClass(EnemyParentClass):
     def __init__(self):
+        super().__init__()
         self.type = "Boss Enemy"
         self.health = 75
         self.speed = 100
