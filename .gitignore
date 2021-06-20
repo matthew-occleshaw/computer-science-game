@@ -269,8 +269,6 @@ Thumbs.db
 
 ### replit ###
 .replit
-poetry.lock
-pyproject.toml
 
 ### Project Specific ###
 computer-science-game/game_saves.json
