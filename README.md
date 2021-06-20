@@ -8,13 +8,42 @@ Simple text-based dungeon crawler created for a computer science project
 [GitHub Repository](https://github.com/matthew-occleshaw/computer-science-game "Github")  
 [To Do List](https://github.com/matthew-occleshaw/computer-science-game/blob/master/game-plan.md)
 
-### To run
+## To run
+
+### Prerequisites:
+
+- Pipenv
+- Python 3.9.\*
+
+Installation instructions for prerequisites on windows:
 
 ```bash
+$ winget install python --version 3.9.*
 $ pip install --user pipenv
+```
+
+### To set up project:
+
+```bash
+$ git clone https://github.com/mjocc/computer-science-game
+$ cd computer-science-game
 $ pipenv install
+```
+
+### To run:
+
+```bash
 $ pipenv run python computer-science-game
 ```
+
+or
+
+```bash
+$ pipenv shell
+$ python computer-science-game
+```
+
+## Supported file commands
 
 ### computer-science-game/leaderboard.py
 
