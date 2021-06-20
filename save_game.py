@@ -1,13 +1,18 @@
-from json import loads, dumps
+from __future__ import annotations  # FIXME Can be removed once python 3.10 comes out
+
 from datetime import datetime
+from json import dumps, loads
 from sys import argv
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from item import items_dict
 from location import locations_dict
 
+if TYPE_CHECKING:
+    from player import Player
 
-def store_game_state(player) -> None:
+
+def store_game_state(player: Player) -> None:
     try:
         open("game_saves.json", "x")
     except FileExistsError:
@@ -15,10 +20,10 @@ def store_game_state(player) -> None:
             file_contents: str = read_file.read()
             file_data: list[dict] = loads(file_contents)
     else:
-        file_data: list[dict] = []
+        file_data = []
 
     game_data: dict = vars(player)
-    game_data["current_room"] = player.current_room.room_name
+    game_data["current_room"] = player.current_room.name
     game_data["backpack"] = [item.name for item in player.backpack]
     current_time = datetime.now()
     time_string = current_time.strftime("%H:%M:%S, %d/%m/%y")
@@ -36,18 +41,31 @@ def retrieve_game_state() -> Optional[dict]:
     if saves:
         print("Saved games: ")
         for num, save in enumerate(saves):
-            print(f"{num: int + 1}: {save: str}")
+            print(f"{num + 1}: {save}")
         selected_save_index: int = int(input("Enter save number: ")) - 1
+        if selected_save_index == -1:
+            print("Starting a new game.")
+            return None
         selected_save: dict = file_data[selected_save_index]
         selected_save.pop("save_name")
-        selected_save["backpack"] = [
-            items_dict[item]() for item in selected_save["backpack"]
-        ]
-        selected_save["current_room"] = locations_dict[selected_save["current_room"]]
-        file_data.pop(selected_save_index)
-        with open("game_saves.json", "wt") as write_file:
-            write_file.write(dumps(file_data))
-        return selected_save
+        print("Save data: ")
+        for key, value in selected_save.items():
+            print(f"\t{key}: {value}")
+        confirmation = bool(input("Does this look right? (y/n): ") == "y")
+        if confirmation:
+            selected_save["backpack"] = [
+                items_dict[item]() for item in selected_save["backpack"]
+            ]
+            selected_save["current_room"] = locations_dict[
+                selected_save["current_room"]
+            ]
+            file_data.pop(selected_save_index)
+            with open("game_saves.json", "wt") as write_file:
+                write_file.write(dumps(file_data))
+            return selected_save
+        else:
+            print("Pick another save or type 0 for a new game: ")
+            return retrieve_game_state()
     else:
         print("No saves available. Starting a new game.")
         return None

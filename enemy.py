@@ -1,15 +1,20 @@
+from __future__ import annotations  # FIXME Can be removed once python 3.10 comes out
+
 from random import randint
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from player import Player
 
 
-# noinspection PyUnresolvedReferences
-class EnemyParentClass:
-    def __init__(self):
-        self.type: str
-        self.health: int
-        self.speed: int
-        self.attack: int
+class Enemy:
+    def __init__(self, variant: str, health: int, speed: int, attack: int) -> None:
+        self.variant: str = variant
+        self.health: int = health
+        self.speed: int = speed
+        self.attack: int = attack
 
-    def attack_enemy(self, target):
+    def attack_enemy(self, target: Player) -> None:
         damage = self.attack + randint(0, self.attack // 2)
         target.health -= damage
         print(
@@ -18,37 +23,17 @@ class EnemyParentClass:
         )
 
 
-class BasicEnemyClass(EnemyParentClass):
-    def __init__(self):
-        super().__init__()
-        self.type = "Basic Enemy"
-        self.health = 15
-        self.speed = 35
-        self.attack = 5
+def basic_enemy() -> Enemy:
+    return Enemy("Basic Enemy", health=15, speed=35, attack=5)
 
 
-class NormalEnemyClass(EnemyParentClass):
-    def __init__(self):
-        super().__init__()
-        self.type = "Normal Enemy"
-        self.health = 25
-        self.speed = 50
-        self.attack = 10
+def normal_enemy() -> Enemy:
+    return Enemy("Normal Enemy", health=25, speed=50, attack=10)
 
 
-class HardEnemyClass(EnemyParentClass):
-    def __init__(self):
-        super().__init__()
-        self.type = "Hard Enemy"
-        self.health = 35
-        self.speed = 65
-        self.attack = 15
+def hard_enemy() -> Enemy:
+    return Enemy("Hard Enemy", health=35, speed=65, attack=15)
 
 
-class BossEnemyClass(EnemyParentClass):
-    def __init__(self):
-        super().__init__()
-        self.type = "Boss Enemy"
-        self.health = 75
-        self.speed = 100
-        self.attack = 25
+def boss_enemy() -> Enemy:
+    return Enemy("Boss Enemy", health=75, speed=100, attack=25)

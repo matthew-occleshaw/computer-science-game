@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 tabulate = "*"
 mypy = "*"
+isort = "*"
 
 [dev-packages]
 black = "*"

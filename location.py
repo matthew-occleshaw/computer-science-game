@@ -1,53 +1,63 @@
-from enemy import BasicEnemyClass, NormalEnemyClass, HardEnemyClass, BossEnemyClass
-from item import Key, UpgradeStation, apple
+from __future__ import annotations  # FIXME Can be removed once python 3.10 comes out
+
+from typing import Optional
+
+from enemy import Enemy, basic_enemy, boss_enemy, hard_enemy, normal_enemy
+from item import Item, Key, UpgradeStation, apple
 
 
-class LocationClass:
+class Location:
     def __init__(
         self,
-        room_name,
-        connected_rooms=None,
-        items=None,
-        basic_enemy=0,
-        normal_enemy=0,
-        hard_enemy=0,
-        boss=0,
-        key_required=False,
-    ):
-        self.room_name = room_name
-        self.key_required = key_required
+        name: str,
+        connected_rooms: Optional[list[Location]] = None,
+        items: Optional[list[Item]] = None,
+        basic_enemy_no: int = 0,
+        normal_enemy_no: int = 0,
+        hard_enemy_no: int = 0,
+        boss_enemy_no: int = 0,
+        key_required: bool = False,
+    ) -> None:
+        self.name: str = name
+        self.key_required: bool = key_required
 
-        self.items = items if items is not None else []
+        self.items: list[Item] = items if items is not None else []
 
-        self.connected_rooms = connected_rooms
-        try:
-            self.connected_room_names = list(
-                map(lambda room: room.room_name, self.connected_rooms)
-            )
-        except TypeError:
-            self.connected_room_names = []
+        self.connected_rooms: list[Location] = (
+            connected_rooms if connected_rooms is not None else []
+        )
 
-        self.enemies = {}
-        for i in range(basic_enemy):
-            self.enemies[f"be{i}"] = BasicEnemyClass()
-        for i in range(normal_enemy):
-            self.enemies[f"ne{i}"] = NormalEnemyClass()
-        for i in range(hard_enemy):
-            self.enemies[f"he{i}"] = HardEnemyClass()
-        for i in range(boss):
-            self.enemies[f"boss{i}"] = BossEnemyClass()
+        self.connected_room_names: list[str] = list(
+            map(lambda room: room.name, self.connected_rooms)
+        )
+
+        self.enemies: dict[str, Enemy] = {}
+        for i in range(basic_enemy_no):
+            self.enemies[f"be{i}"] = basic_enemy()
+        for i in range(normal_enemy_no):
+            self.enemies[f"ne{i}"] = normal_enemy()
+        for i in range(hard_enemy_no):
+            self.enemies[f"he{i}"] = hard_enemy()
+        for i in range(boss_enemy_no):
+            self.enemies[f"boss{i}"] = boss_enemy()
 
 
-l9 = LocationClass("9", boss=1)
-l8 = LocationClass("8", [l9], normal_enemy=2, hard_enemy=1)
-l7 = LocationClass("7", [l8], basic_enemy=1, hard_enemy=1)
-l6 = LocationClass("6", [l8], basic_enemy=1, hard_enemy=1)
-l5 = LocationClass("5", [l8], basic_enemy=1, hard_enemy=1)
-l4 = LocationClass("4", [l6, l7], key_required=True, basic_enemy=1, normal_enemy=1)
-l3 = LocationClass("3", [l5], basic_enemy=1, normal_enemy=1)
-l2 = LocationClass("2", [l3, l4], items=[apple(), UpgradeStation()], basic_enemy=3)
-l1 = LocationClass("1", [l2], items=[Key()], basic_enemy=1)
-l0 = LocationClass("Start", [l1])
+l9: Location = Location("9", boss_enemy_no=1)
+l8: Location = Location("8", [l9], normal_enemy_no=2, hard_enemy_no=1)
+l7: Location = Location("7", [l8], basic_enemy_no=1, hard_enemy_no=1)
+l6: Location = Location("6", [l8], basic_enemy_no=1, hard_enemy_no=1)
+l5: Location = Location("5", [l8], basic_enemy_no=1, hard_enemy_no=1)
+l4: Location = Location(
+    "4", [l6, l7], key_required=True, basic_enemy_no=1, normal_enemy_no=1
+)
+l3: Location = Location("3", [l5], basic_enemy_no=1, normal_enemy_no=1)
+l2: Location = Location(
+    "2", [l3, l4], items=[apple(), UpgradeStation()], basic_enemy_no=3
+)
+l1: Location = Location("1", [l2], items=[Key()], basic_enemy_no=1)
+l0: Location = Location("Start", [l1])
 
-locations = [l0, l1, l2, l3, l4, l5, l6, l7, l8, l9]
-locations_dict = {location.room_name: location for location in locations}
+locations: list[Location] = [l0, l1, l2, l3, l4, l5, l6, l7, l8, l9]
+locations_dict: dict[str, Location] = {
+    location.name: location for location in locations
+}
