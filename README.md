@@ -13,17 +13,17 @@ Simple text-based dungeon crawler created for a computer science project
 ```bash
 $ pip install --user pipenv
 $ pipenv install
-$ pipenv run python main.py
+$ pipenv run python computer-science-game
 ```
 
-### leaderboard.py
+### computer-science-game/leaderboard.py
 
 Supported flags:
 
 - `--reset` - resets the database
-- `--get-data` - prints all the data (bar the primary key) from the database
+- `--get-data` - returns all the data (bar the primary key) from the database as an ASCII art table
 
-### save_game.py
+### computer-science-game/save_game.py
 
 Supported flags:
 

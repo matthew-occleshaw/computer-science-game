@@ -1,3 +1,4 @@
+import os
 import sqlite3 as sql
 from sqlite3 import Connection, Cursor
 from sys import argv
@@ -5,12 +6,13 @@ from typing import Any, Callable, TypeVar, cast
 
 from tabulate import tabulate
 
+LEADERBOARD_FILE_PATH = os.path.join(os.path.dirname(__file__), "leaderboard.sqlite3")
 decorator_type = TypeVar("decorator_type", bound=Callable[..., Any])
 
 
 def connect_to_db(func: decorator_type) -> decorator_type:
     def inner(*args: list, **kwargs: dict) -> Any:
-        connection: Connection = sql.connect("leaderboard.db")
+        connection: Connection = sql.connect(LEADERBOARD_FILE_PATH)
         cursor: Cursor = connection.cursor()
         return_value: Any = func(cursor, *args, **kwargs)
         connection.commit()
@@ -23,7 +25,7 @@ def connect_to_db(func: decorator_type) -> decorator_type:
 def reset_db(c: Cursor) -> None:
     if input("Are you sure (y/n): ") == "y":
         c.execute("""DROP TABLE IF EXISTS leaderboard""")
-        print("Table dropped")
+        print("Table(s) dropped")
         c.execute(
             """CREATE TABLE leaderboard (
             pk INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,7 +34,7 @@ def reset_db(c: Cursor) -> None:
         )"""
             # TODO Add more fields to leaderboard table
         )
-        print("Table created")
+        print("Table(s) created")
 
 
 @connect_to_db

@@ -1,5 +1,6 @@
 from __future__ import annotations  # FIXME Can be removed once python 3.10 comes out
 
+import os
 from datetime import datetime
 from json import dumps, loads
 from sys import argv
@@ -11,12 +12,14 @@ from location import locations_dict
 if TYPE_CHECKING:
     from player import Player
 
+GAME_SAVES_FILE_PATH = os.path.join(os.path.dirname(__file__), "game_saves.json")
+
 
 def store_game_state(player: Player) -> None:
     try:
-        open("game_saves.json", "x")
+        open(GAME_SAVES_FILE_PATH, "x")
     except FileExistsError:
-        with open("game_saves.json", "rt") as read_file:
+        with open(GAME_SAVES_FILE_PATH, "rt") as read_file:
             file_contents: str = read_file.read()
             file_data: list[dict] = loads(file_contents)
     else:
@@ -29,12 +32,12 @@ def store_game_state(player: Player) -> None:
     time_string = current_time.strftime("%H:%M:%S, %d/%m/%y")
     game_data["save_name"] = f"{player.username} @ {time_string}"
     file_data.append(game_data)
-    with open("game_saves.json", "wt") as write_file:
+    with open(GAME_SAVES_FILE_PATH, "wt") as write_file:
         write_file.write(dumps(file_data))
 
 
 def retrieve_game_state() -> Optional[dict]:
-    with open("game_saves.json", "rt") as read_file:
+    with open(GAME_SAVES_FILE_PATH, "rt") as read_file:
         file_contents: str = read_file.read()
         file_data: list[dict] = loads(file_contents)
         saves: list[str] = [save["save_name"] for save in file_data]
@@ -60,7 +63,7 @@ def retrieve_game_state() -> Optional[dict]:
                 selected_save["current_room"]
             ]
             file_data.pop(selected_save_index)
-            with open("game_saves.json", "wt") as write_file:
+            with open(GAME_SAVES_FILE_PATH, "wt") as write_file:
                 write_file.write(dumps(file_data))
             return selected_save
         else:
@@ -73,7 +76,7 @@ def retrieve_game_state() -> Optional[dict]:
 
 def reset_saves() -> None:
     if input("Are you sure (y/n): ") == "y":
-        with open("game_saves.json", "wt") as file:
+        with open(GAME_SAVES_FILE_PATH, "wt") as file:
             file_data: list = []
             file.write(dumps(file_data))
         print("Game saves reset.")

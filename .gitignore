@@ -273,7 +273,7 @@ poetry.lock
 pyproject.toml
 
 ### Project Specific ###
-game_saves.json
-test.py
+computer-science-game/game_saves.json
+computer-science-game/test.py
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,pycharm
