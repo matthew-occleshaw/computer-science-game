@@ -271,7 +271,7 @@ Thumbs.db
 .replit
 
 ### Project Specific ###
-computer-science-game/game_saves.json
-computer-science-game/test.py
+computer_science_game/game_saves.json
+computer_science_game/test.py
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,pycharm

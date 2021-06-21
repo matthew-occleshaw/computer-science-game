@@ -98,8 +98,9 @@ class Player:
             for index, item in enumerate(self.backpack):
                 print(f"{str(index + 1)}: {item.name}")
             item = self.backpack[int(input("Item number: ")) - 1]
-            item.use_item(self)
-            self.backpack.remove(item)
+            used: bool = item.use_item(self)
+            if used:
+                self.backpack.remove(item)
             return None
 
     def pick_up_item(self, item: Item) -> None:

@@ -14,7 +14,7 @@ class Item:
     def __init__(self) -> None:
         self.name: str = ""
 
-    def use_item(self, player: Player) -> None:
+    def use_item(self, player: Player) -> bool:
         pass
 
     # TODO Do something here?
@@ -23,12 +23,13 @@ class Item:
 class HealthItem(Item):
     def __init__(self, name: str, health_increase: int) -> None:
         super().__init__()
-        self.name = name
-        self.health_increase = health_increase
+        self.name: str = name
+        self.health_increase: int = health_increase
 
-    def use_item(self, player: Player) -> None:
+    def use_item(self, player: Player) -> bool:
         player.health += self.health_increase
         print(f"{self.name} used! You were healed for {self.health_increase} health.")
+        return True
 
 
 def apple() -> HealthItem:
@@ -38,19 +39,20 @@ def apple() -> HealthItem:
 class Key(Item):
     def __init__(self) -> None:
         super().__init__()
-        self.name = "Key"
+        self.name: str = "Key"
 
     @staticmethod
-    def use_item(player: Player, **kwargs: Any) -> None:
-        print("You can't use this item here")
+    def use_item(player: Player, **kwargs: Any) -> bool:
+        print("You can't use this item here.")
+        return False
 
 
 class UpgradeStation(Item):
     def __init__(self) -> None:
         super().__init__()
-        self.name = "Upgrade Station"
+        self.name: str = "Upgrade Station"
 
-    def use_item(self, player: Player) -> None:
+    def use_item(self, player: Player) -> bool:
         print(
             "\nWould you like to upgrade: ",
             "1: Max Health",
@@ -59,9 +61,9 @@ class UpgradeStation(Item):
             "4: Backpack Size",
             sep="\n",
         )
-        upgrade = int(input("Attribute number: "))
+        upgrade: int = int(input("Attribute number: "))
         if upgrade == 1:
-            health_increase = randint(20, 50)
+            health_increase: int = randint(20, 50)
             player.health += health_increase
             player.max_health += health_increase
             print(
@@ -70,14 +72,14 @@ class UpgradeStation(Item):
                 f"and re now on {player.health} health."
             )
         elif upgrade == 2:
-            speed_increase = randint(10, 25)
+            speed_increase: int = randint(10, 25)
             player.speed += speed_increase
             print(
                 f"Your speed was increased by {speed_increase} "
                 f"and is now {player.speed}."
             )
         elif upgrade == 3:
-            attack_increase = randint(5, 10)
+            attack_increase: int = randint(5, 10)
             player.attack += attack_increase
             print(
                 f"Your attack was increased by {attack_increase} "
@@ -92,6 +94,7 @@ class UpgradeStation(Item):
         else:
             print("That is not a valid thing to upgrade. Please try again.")
             self.use_item(player)
+        return True
 
 
 items: list[Union[Type[Item], Callable[[], Item]]] = [

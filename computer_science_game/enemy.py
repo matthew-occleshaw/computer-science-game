@@ -15,7 +15,7 @@ class Enemy:
         self.attack: int = attack
 
     def attack_enemy(self, target: Player) -> None:
-        damage = self.attack + randint(0, self.attack // 2)
+        damage: int = self.attack + randint(0, self.attack // 2)
         target.health -= damage
         print(
             f"You took {damage} damage and are now on "

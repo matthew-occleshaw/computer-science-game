@@ -26,21 +26,21 @@ $ pip install --user pipenv
 
 ```bash
 $ git clone https://github.com/mjocc/computer-science-game
-$ cd computer-science-game
+$ cd computer_science_game
 $ pipenv install
 ```
 
 ### To run:
 
 ```bash
-$ pipenv run python computer-science-game
+$ pipenv run python computer_science_game
 ```
 
 or
 
 ```bash
 $ pipenv shell
-$ python computer-science-game
+$ python computer_science_game
 ```
 
 ## Supported file commands

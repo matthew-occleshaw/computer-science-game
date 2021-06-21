@@ -24,8 +24,8 @@ def start() -> Player:
 
 
 def new_game() -> Player:
-    username = input("Enter username: ")
-    player = Player(username)
+    username: str = input("Enter username: ")
+    player: Player = Player(username)
     print(
         "\nYou awake in a small, dingy room. The walls are made of stone brick, "
         "and there are no windows."

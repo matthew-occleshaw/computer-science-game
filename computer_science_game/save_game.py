@@ -12,7 +12,7 @@ from location import locations_dict
 if TYPE_CHECKING:
     from player import Player
 
-GAME_SAVES_FILE_PATH = os.path.join(os.path.dirname(__file__), "game_saves.json")
+GAME_SAVES_FILE_PATH: str = os.path.join(os.path.dirname(__file__), "game_saves.json")
 
 
 def store_game_state(player: Player) -> None:
