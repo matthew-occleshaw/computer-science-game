@@ -184,18 +184,16 @@ class Player:
                     continue
                 if selected_room.key_required:
                     print("The door is locked and needs a key.")
-                    keys_in_backpack: list[bool] = [
-                        bool(isinstance(item, Key)) for item in self.backpack
-                    ]
-                    key_in_backpack: bool = bool(keys_in_backpack.count(True))
-                    if key_in_backpack:
-                        key_index: int = keys_in_backpack.index(True)
+                    key_in_backpack: Optional[Key] = next(
+                        (item for item in self.backpack if isinstance(item, Key)), None
+                    )
+                    if key_in_backpack is not None:
                         print(
                             "You have a key in your backpack. You try it ... ", end=""
                         )
                         sleep(1)
                         print("It fits!")
-                        self.backpack.pop(key_index)
+                        self.backpack.remove(key_in_backpack)
                         break
                     else:
                         print("You don't have one! Try a different door.")

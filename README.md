@@ -15,7 +15,7 @@ Simple text-based dungeon crawler created for a computer science project
 - Pipenv
 - Python 3.9.\*
 
-Installation instructions for prerequisites on windows:
+Installation instructions for prerequisites on Windows:
 
 ```bash
 $ winget install python --version 3.9.*
