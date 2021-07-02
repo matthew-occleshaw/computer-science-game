@@ -1,6 +1,7 @@
 # computer-science-game
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 
 Simple text-based dungeon crawler created for a computer science project
 
@@ -26,21 +27,21 @@ $ pip install --user pipenv
 
 ```bash
 $ git clone https://github.com/mjocc/computer-science-game
-$ cd computer_science_game
+$ cd computer-science-game
 $ pipenv install
 ```
 
 ### To run:
 
 ```bash
-$ pipenv run python computer_science_game
+$ pipenv run python -m computer_science_game
 ```
 
 or
 
 ```bash
 $ pipenv shell
-$ python computer_science_game
+$ python -m computer-science-game
 ```
 
 ## Supported file commands
