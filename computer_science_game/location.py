@@ -2,8 +2,14 @@ from __future__ import annotations  # FIXME Can be removed once python 3.10 come
 
 from typing import Optional
 
-from enemy import Enemy, basic_enemy, boss_enemy, hard_enemy, normal_enemy
-from item import Item, Key, UpgradeStation, apple
+from computer_science_game.enemy import (
+    Enemy,
+    basic_enemy,
+    boss_enemy,
+    hard_enemy,
+    normal_enemy,
+)
+from computer_science_game.item import Item, Key, UpgradeStation, apple
 
 
 class Location:

@@ -1,8 +1,8 @@
 from time import sleep
 from typing import Optional
 
-from player import Player
-from save_game import retrieve_game_state
+from computer_science_game.player import Player
+from computer_science_game.save_game import retrieve_game_state
 
 
 def start() -> Player:

@@ -4,7 +4,7 @@ from random import randint
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from player import Player
+    from computer_science_game.player import Player
 
 
 class Enemy:

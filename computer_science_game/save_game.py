@@ -6,11 +6,11 @@ from json import dumps, loads
 from sys import argv
 from typing import TYPE_CHECKING, Optional
 
-from item import items_dict
-from location import locations_dict
+from computer_science_game.item import items_dict
+from computer_science_game.location import locations_dict
 
 if TYPE_CHECKING:
-    from player import Player
+    from computer_science_game.player import Player
 
 GAME_SAVES_FILE_PATH: str = os.path.join(os.path.dirname(__file__), "game_saves.json")
 

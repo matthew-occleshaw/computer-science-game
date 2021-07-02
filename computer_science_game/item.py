@@ -4,7 +4,7 @@ from random import randint
 from typing import TYPE_CHECKING, Any, Callable, Type, Union
 
 if TYPE_CHECKING:
-    from player import Player
+    from computer_science_game.player import Player
 
 # NOTE: All directly used items must have no parameters for creation, a name attribute
 #   and a use_item method. They must also be added to the items list.

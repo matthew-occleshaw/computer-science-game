@@ -4,15 +4,15 @@ from random import randint
 from time import sleep
 from typing import TYPE_CHECKING, Literal, Optional
 
-from item import Key
-from leaderboard import insert_record
-from location import l0
-from save_game import store_game_state
+from computer_science_game.item import Key
+from computer_science_game.leaderboard import insert_record
+from computer_science_game.location import l0
+from computer_science_game.save_game import store_game_state
 
 if TYPE_CHECKING:
-    from enemy import Enemy
-    from item import Item
-    from location import Location
+    from computer_science_game.enemy import Enemy
+    from computer_science_game.item import Item
+    from computer_science_game.location import Location
 
 
 class Player:
