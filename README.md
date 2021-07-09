@@ -41,19 +41,19 @@ or
 
 ```bash
 $ pipenv shell
-$ python -m computer-science-game
+$ python -m computer_science_game
 ```
 
 ## Supported file commands
 
-### computer-science-game/leaderboard.py
+### computer_science_game/leaderboard.py
 
 Supported flags:
 
 - `--reset` - resets the database
 - `--get-data` - returns all the data (bar the primary key) from the database as an ASCII art table
 
-### computer-science-game/save_game.py
+### computer_science_game/save_game.py
 
 Supported flags:
 
