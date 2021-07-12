@@ -1,6 +1,6 @@
 from __future__ import annotations  # FIXME Can be removed once python 3.10 comes out
 
-from random import randint
+import random
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -15,12 +15,15 @@ class Enemy:
         self.attack: int = attack
 
     def attack_enemy(self, target: Player) -> None:
-        damage: int = self.attack + randint(0, self.attack // 2)
-        target.health -= damage
-        print(
-            f"You took {damage} damage and are now on "
-            f"{target.health if target.health > 0 else 0} health"
-        )
+        damage: int = self.attack + random.randint(0, self.attack // 2)
+        if random.uniform(0, 200) > random.uniform(0, 100 - target.speed / 2):
+            target.health -= damage
+            print(
+                f"You took {damage} damage and are now on "
+                f"{target.health if target.health > 0 else 0} health"
+            )
+        else:
+            print("You dodged the attack!")
 
 
 def basic_enemy() -> Enemy:
