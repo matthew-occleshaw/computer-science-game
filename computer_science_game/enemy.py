@@ -16,7 +16,7 @@ class Enemy:
 
     def attack_enemy(self, target: Player) -> None:
         damage: int = self.attack + random.randint(0, self.attack // 2)
-        if random.uniform(0, 200) > random.uniform(0, 100 - target.speed / 2):
+        if random.uniform(0, 100) < 100 - target.speed / 3:
             target.health -= damage
             print(
                 f"You took {damage} damage and are now on "
